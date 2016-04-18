@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:layout_margin="5dp"
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="#212121"
+    card_view:cardCornerRadius="2dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:id="@+id/moonImageView"
+            android:src="@drawable/third_quarter"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:padding="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Moon"
+            android:id="@+id/textView3"
+            android:layout_alignBottom="@+id/moonImageView"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:padding="2dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="PlaceHolder"
+            android:id="@+id/moonPhaseText"
+            android:layout_below="@+id/moonImageView"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:padding="2dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="PlaceHolder"
+            android:id="@+id/moonRiseText"
+            android:layout_below="@+id/moonPhaseText"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

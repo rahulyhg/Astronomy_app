@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:clickable="false"
+    android:layout_margin="2dp"
+    android:id="@+id/cardview"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+
+    card_view:cardCornerRadius="3dp">
+
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:elevation="11dp"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:id="@+id/moonImageView"
+            android:src="@drawable/third_quarter"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:elevation="12dp"
+            android:textColor="#FFEB3B"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Moon"
+            android:id="@+id/moonLabelText"
+            android:layout_alignBottom="@+id/moonImageView"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="PlaceHolder"
+            android:id="@+id/moonPhaseText"
+            android:layout_below="@+id/moonImageView"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+
+            android:paddingLeft="10dp"
+            android:textColor="#000000"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="PlaceHolder"
+            android:id="@+id/moonRiseText"
+            android:layout_below="@+id/moonPhaseText"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:elevation="10dp"
+            android:scaleType="centerCrop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/starsImageView"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/stars_background_alt"
+            android:layout_alignBottom="@+id/moonImageView" />
+
+        <TextView
+            android:clickable="true"
+            android:onClick="startMoonDetails"
+            android:padding="10dp"
+            android:textColor="#2196F3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="VIEW DETAILS"
+            android:id="@+id/textView5"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:capitalize="words" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

@@ -1,0 +1,45 @@
+<ScrollView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+<RelativeLayout android:background="#e3e3e3"
+    android:layout_height="match_parent" android:layout_width="match_parent"
+    android:id="@+id/mainLayout"
+    tools:context="com.example.android.cardview.CardViewActivity" tools:ignore="MergeRootFrame"
+    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+
+    android:orientation="horizontal">
+
+
+    <FrameLayout
+        android:padding="5dp"
+        android:id="@+id/moonView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="false">
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:padding="5dp"
+        android:layout_below="@+id/moonView"
+        android:id="@+id/dayView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true">
+
+    </FrameLayout>
+    <FrameLayout
+        android:padding="5dp"
+        android:layout_below="@+id/dayView"
+        android:id="@+id/saturnView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
+
+</RelativeLayout>
+</ScrollView>
