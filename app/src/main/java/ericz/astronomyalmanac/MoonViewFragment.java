@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -84,7 +83,8 @@ public class MoonViewFragment extends Fragment {
 
         //I tried to use a switch case statement here but it always set the wrong moon phase.. not sure why
 
-        moonRiseText.setText("the moon will rise at " + dataArray[0] + " and set at " + dataArray[1]);
+        moonRiseText.setText("The moon will rise at " + dataArray[0].substring(20, 28)
+                + " and set at " + dataArray[1].substring(20, 28));
 
         try{
 
@@ -119,7 +119,6 @@ public class MoonViewFragment extends Fragment {
 
         }
 
-//        Log.v("tag", this.moonPhase);
     }
 
 

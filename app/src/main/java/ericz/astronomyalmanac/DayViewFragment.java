@@ -61,8 +61,8 @@ public class DayViewFragment extends Fragment {
         ImageView sunImage = (ImageView)view.findViewById(R.id.sunImage);
         sunImage.bringToFront();
         TextView textView = (TextView)view.findViewById(R.id.sunriseText);
-        textView.setText("The sun will rise at " + finalData[1] + "and set at "
-            + finalData[3]);
+        textView.setText("The sun will rise at " + finalData[1].substring(20, 28) + "and set at "
+            + finalData[3].substring(20, 28));
     }
 
     public class GetSunInfo extends AsyncTask<Void, String, String[]>
