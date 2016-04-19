@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,7 +25,7 @@ import java.util.concurrent.ExecutionException;
 
 
 public class MoonViewFragment extends Fragment {
-    Typeface typeface;
+    Typeface font;
     CardView mCardView;
     private String moonPhase;
     private String[] dataArray;
@@ -35,7 +36,6 @@ public class MoonViewFragment extends Fragment {
         fragment.setRetainInstance(true);
         return fragment;
     }
-
     public MoonViewFragment() {
         // singleton
     }
@@ -51,8 +51,6 @@ public class MoonViewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_card_view, container, false);
-
-
     }
 
     @Override
@@ -69,26 +67,28 @@ public class MoonViewFragment extends Fragment {
         moonImageView.bringToFront();
 
 
+
+        TextView moonLabelText = (TextView)view.findViewById(R.id.moonLabelText);
+
+       // moonRiseText.setText("The moon will rise at " + this.dataArray[1] + "and set at "
+         //       + this.dataArray[2]);
+
+        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "RobotoSlab-Regular.ttf");
+        moonLabelText.bringToFront();
+        moonLabelText.setTypeface(font);
         try {
-            this.dataArray = getMoonInfo.execute().get();
+            this.moonPhase = getMoonInfo.execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        TextView moonLabelText = (TextView)view.findViewById(R.id.moonLabelText);
-
-        moonRiseText.setText("The moon will rise at " + this.dataArray[1] + "and set at "
-                + this.dataArray[2]);
-
-        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "RobotoSlab-Regular.ttf");
-        moonLabelText.bringToFront();
-        moonLabelText.setTypeface(font);
-
         TextView moonPhaseText = (TextView)view.findViewById(R.id.moonPhaseText);
         //I tried to use a switch case statement here but it always set the wrong moon phase.. not sure why
+        Toast toast = Toast.makeText(this.getContext(), this.moonPhase, Toast.LENGTH_LONG);
+        toast.show();
         try{
-            this.moonPhase = this.dataArray[1];
+
             moonPhaseText.setText("Tonight's phase is a " + this.moonPhase);
 
             if(this.moonPhase.equals("New Moon"))
@@ -115,15 +115,12 @@ public class MoonViewFragment extends Fragment {
             if(this.moonPhase.equals("Waning Gibbous"))
                 moonImageView.setImageResource(R.drawable.waning_gibbous);
 
-
-
-
         }
         catch (Exception e){
 
         }
 
-        Log.v("tag", this.moonPhase);
+//        Log.v("tag", this.moonPhase);
     }
 
 
@@ -132,7 +129,7 @@ public class MoonViewFragment extends Fragment {
 
 
 
-    public class GetMoonInfo extends AsyncTask<Void, String, String[]>
+    public class GetMoonInfo extends AsyncTask<Void, String, String>
     {
         private String phaseJsonString;
         private JSONObject phaseJson;
@@ -149,7 +146,7 @@ public class MoonViewFragment extends Fragment {
         private JSONArray jsonSunArray;
         String[] returnedArray = new String[5];
         @Override
-        protected String[] doInBackground(Void... params) {
+        protected String doInBackground(Void... params) {
             String url = "http://api.usno.navy.mil/rstt/oneday?date=" +
                     (Calendar.getInstance().get(Calendar.MONTH) + 1)
                     + "/"
@@ -172,56 +169,52 @@ public class MoonViewFragment extends Fragment {
             }
             try
             {
-                this.finalPhase = this.phaseJson.get("curphase").toString();
+                this.finalPhase = (String) this.phaseJson.get("curphase");
             }
             catch (JSONException e) {
                 e.printStackTrace();
             }
-            try
-            {
-                this.jsonMoonArray = new JSONArray(phaseJson.getJSONArray("moondata"));
-            }
-            catch (JSONException e) {
-                e.printStackTrace();
-            }
-            try {
-                this.moonRiseObject = jsonMoonArray.getJSONObject(0);
-                this.moonRise = moonRiseObject.getString("time").toString();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            try {
-                this.moonSetObject = jsonMoonArray.getJSONObject(2);
-                this.moonSet = moonSetObject.getString("time").toString();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            try {
-                this.jsonSunArray = new JSONArray(phaseJson.getJSONArray("sundata"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            try {
-                this.sunRiseObject = this.jsonSunArray.getJSONObject(1);
-                this.sunRise = sunRiseObject.getString("time").toString();
+//            try
+//            {
+//                this.jsonMoonArray = new JSONArray(phaseJson.getJSONArray("moondata"));
+//            }
+//            catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            try {
+//                this.moonRiseObject = jsonMoonArray.getJSONObject(0);
+//                this.moonRise = moonRiseObject.getString("time").toString();
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            try {
+//                this.moonSetObject = jsonMoonArray.getJSONObject(2);
+//                this.moonSet = moonSetObject.getString("time").toString();
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            try {
+//                this.jsonSunArray = new JSONArray(phaseJson.getJSONArray("sundata"));
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            try {
+//                this.sunRiseObject = this.jsonSunArray.getJSONObject(1);
+//                this.sunRise = sunRiseObject.getString("time").toString();
+//
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            try {
+//                this.sunSetObject = this.jsonSunArray.getJSONObject(3);
+//                this.sunSet = this.sunSetObject.getString("time").toString();
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            try {
-                this.sunSetObject = this.jsonSunArray.getJSONObject(3);
-                this.sunSet = this.sunSetObject.getString("time").toString();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
 
-
-            this.returnedArray[0] = this.finalPhase;
-            this.returnedArray[1] = this.moonRise;
-            this.returnedArray[2] = this.moonSet;
-            this.returnedArray[3] = this.sunRise;
-            this.returnedArray[4] = this.sunSet;
-            return this.returnedArray;
+            Log.v("tag", this.finalPhase);
+            return this.finalPhase;
         }
 
 
