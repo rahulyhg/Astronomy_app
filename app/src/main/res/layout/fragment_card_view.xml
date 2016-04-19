@@ -13,7 +13,7 @@
     card_view:cardCornerRadius="3dp">
 
     <RelativeLayout
-
+        android:background="@color/cardColor"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -41,7 +41,7 @@
 
         <TextView
             android:padding="10dp"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
@@ -53,7 +53,7 @@
         <TextView
 
             android:paddingLeft="10dp"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,19 +74,16 @@
             android:src="@drawable/stars_background_alt"
             android:layout_alignBottom="@+id/moonImageView" />
 
-        <TextView
-            android:clickable="true"
-            android:onClick="startMoonDetails"
-            android:padding="10dp"
-            android:textColor="#2196F3"
+        <Button
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="VIEW DETAILS"
-            android:id="@+id/textView5"
+            android:text="View Details"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+
+            android:id="@+id/button"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:capitalize="words" />
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

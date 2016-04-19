@@ -1,13 +1,17 @@
 package ericz.astronomyalmanac;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.Time;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -26,10 +30,17 @@ public class MainActivity extends AppCompatActivity {
             //RelativeLayout mainLayout = (RelativeLayout)findViewById(R.id.mainLayout);
 
             //mainLayout.setBackgroundColor(Color.parseColor(hexColor));
+//        Window w = getWindow();
+//        w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+//                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+//
+//        w.setStatusBarColor(getResources().getColor(R.color.statusBarColor));
+        //ActionBar bar = getActionBar();
+        //ColorDrawable colorDrawable = new ColorDrawable(getResources().getColor(R.color.appBarColor));
+        //bar.setBackgroundDrawable(colorDrawable);
 
-
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            mFragments[0] = (MoonViewFragment.newInstance(getApplicationContext()));
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            mFragments[0] = (MoonViewFragment.newInstance());
             mFragments[1] = (DayViewFragment.newInstance());
             mFragments[2] = (SaturnViewFragment.newInstance());
             mFragments[3] = (VenusViewFragment.newInstance());
