@@ -18,8 +18,9 @@
         android:layout_height="fill_parent">
 
         <ImageView
+            android:elevation="11dp"
             android:padding="10dp"
-            android:src="@drawable/sun_icon"
+            android:src="@drawable/sun_image_alt"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:id="@+id/sunImage"
@@ -32,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="This is the test Day View Class"
-            android:id="@+id/textView"
+            android:id="@+id/weatherText"
             android:layout_below="@+id/sunImage"
             android:layout_alignParentStart="true" />
 
@@ -43,7 +44,7 @@
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="sunrise to sunset"
             android:id="@+id/sunriseText"
-            android:layout_below="@+id/textView"
+            android:layout_below="@+id/weatherText"
             android:layout_alignParentStart="true" />
 
         <TextView

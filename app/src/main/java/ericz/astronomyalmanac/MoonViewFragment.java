@@ -83,8 +83,8 @@ public class MoonViewFragment extends Fragment {
 
         //I tried to use a switch case statement here but it always set the wrong moon phase.. not sure why
 
-        moonRiseText.setText("The moon will rise at " + dataArray[0].substring(20, 28)
-                + " and set at " + dataArray[1].substring(20, 28));
+        moonRiseText.setText("The moon will rise at " + dataArray[1].substring(20, 28)
+                + " and set at " + dataArray[0].substring(20, 28));
 
         try{
 
@@ -140,7 +140,7 @@ public class MoonViewFragment extends Fragment {
             String url = "http://api.usno.navy.mil/rstt/oneday?date=" +
                     (Calendar.getInstance().get(Calendar.MONTH) + 1)
                     + "/"
-                    + (Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + 1)
+                    + (Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
                     + "/" + Calendar.getInstance().get(Calendar.YEAR)
                     + "&loc=Chicago,%20IL";
             try {
@@ -158,7 +158,7 @@ public class MoonViewFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            for (int i = 0; i<this.jsonArray.length(); i++)
+            for (int i = 0; i<2; i++)
             {
                 try {
                     finalData[i] = this.jsonArray.getString(i);

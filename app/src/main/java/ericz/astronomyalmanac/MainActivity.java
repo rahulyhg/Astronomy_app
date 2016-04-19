@@ -23,21 +23,7 @@ public class MainActivity extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-            //String hexColor = getBackgroundColor();
-            //Toast toast = Toast.makeText(this.getApplicationContext(), "hexcolor is: " + hexColor, Toast.LENGTH_SHORT);
-            //toast.show();
 
-            //RelativeLayout mainLayout = (RelativeLayout)findViewById(R.id.mainLayout);
-
-            //mainLayout.setBackgroundColor(Color.parseColor(hexColor));
-//        Window w = getWindow();
-//        w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-//                WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-//
-//        w.setStatusBarColor(getResources().getColor(R.color.statusBarColor));
-        //ActionBar bar = getActionBar();
-        //ColorDrawable colorDrawable = new ColorDrawable(getResources().getColor(R.color.appBarColor));
-        //bar.setBackgroundDrawable(colorDrawable);
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
             mFragments[0] = (MoonViewFragment.newInstance());
@@ -53,125 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
-        public String getBackgroundColor()
-        {
-            Time rightNow = new Time();
-            switch (rightNow.month){
-                case 0:
-                    if (rightNow.hour>=16 || rightNow.hour <=7 )
-                    {
-                        return "#424242";
-                    }
-                    else
-                    {
-                        return "#FFFFFF";
-                    }
-                case 1:
-                    if (rightNow.hour>=17 || rightNow.hour <=7)
-                    {
-                        return "#424242";
-                    }
-                    else
-                    {
-                        return "#FFFFFF";
-                    }
-                case 2:
-                    if (rightNow.hour>=18 || rightNow.hour <=6)
-                    {
-                        return "#424242";
-                    }
-                    else
-                    {
-                        return "#FFFFFF";
-                    }
-                case 3:
-                    if (rightNow.hour>=18 || rightNow.hour <=6 )
-                    {
-                        return "#424242";
-                    }
-                    else
-                    {
-                        return "#FFFFFF";
-                    }
-                case 4:
-                    if (rightNow.hour>=20 || rightNow.hour <=6 )
-                    {
-                        return "#424242";
-                    }
-                    else
-                    {
-                        return "#FFFFFF";
-                    }
-                case 5:
-                    if (rightNow.hour>=20 || rightNow.hour <=5)
-                    {
-                        return "#424242";
-                    }
-                    else
-                    {
-                        return "#FFFFFF";
-                    }
-                case 6:
-                    if (rightNow.hour>=20 || rightNow.hour <=5)
-                    {
-                        return "#424242";
-                    }
-                    else
-                    {
-                        return "#FFFFFF";
-                    }
-                case 7:
-                    if (rightNow.hour>=20 || rightNow.hour <=5)
-                    {
-                        return "#424242";
-                    }
-                    else
-                    {
-                        return "#FFFFFF";
-                    }
-                case 8:
-                    if (rightNow.hour>=19 || rightNow.hour <=5)
-                    {
-                        return "#424242";
-                    }
-                    else
-                    {
-                        return "#FFFFFF";
-                    }
-                case 9:
-                    if (rightNow.hour>=18 || rightNow.hour <=5)
-                    {
-                        return "#424242";
-                    }
-                    else
-                    {
-                        return "#FFFFFF";
-                    }
-                case 10:
-                    if (rightNow.hour>=16 || rightNow.hour <=4)
-                    {
-                        return "#424242";
-                    }
-                    else
-                    {
-                        return "#FFFFFF";
-                    }
-                case 11:
-                    if (rightNow.hour>=16 || rightNow.hour <=4)
-                    {
-                        return "#424242";
-                    }
-                    else
-                    {
-                        return "#FFFFFF";
-                    }
-            }
 
-
-
-
-            return null;
-        }
 
     public void startMoonDetails(View view)
     {

@@ -14,6 +14,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.util.Calendar;
@@ -60,9 +61,11 @@ public class DayViewFragment extends Fragment {
         }
         ImageView sunImage = (ImageView)view.findViewById(R.id.sunImage);
         sunImage.bringToFront();
+        TextView weatherText = (TextView)view.findViewById(R.id.weatherText);
+        weatherText.setText("It is expected to be " + finalData[5].substring(7, 9)+ " % cloudy today");
         TextView textView = (TextView)view.findViewById(R.id.sunriseText);
-        textView.setText("The sun will rise at " + finalData[1].substring(20, 28) + "and set at "
-            + finalData[3].substring(20, 28));
+        textView.setText("The sun will rise at " + finalData[1].substring(20, 28) + " and set at "
+                + finalData[3].substring(20, 28));
     }
 
     public class GetSunInfo extends AsyncTask<Void, String, String[]>
@@ -70,7 +73,9 @@ public class DayViewFragment extends Fragment {
         private String jsonInfo;
         private JSONObject jsonObject;
         private JSONArray jsonArray;
-        private String[] finalData = new String[5];
+        private String[] finalData = new String[6];
+        private JSONObject jsonWeather;
+        private String weatherInfo;
         @Override
         protected String[] doInBackground(Void... params) {
 
@@ -80,6 +85,8 @@ public class DayViewFragment extends Fragment {
                     + (Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + 1)
                     + "/" + Calendar.getInstance().get(Calendar.YEAR)
                     + "&loc=Chicago,%20IL";
+            String weatherUrl =
+                    "http://api.openweathermap.org/data/2.5/weather?q=Chicago,IL&appid=103d3c819cda6f8663f847cb05606357";
             try {
                 this.jsonInfo = Jsoup.connect(url).ignoreContentType(true).execute().body();
             } catch (IOException e) {
@@ -102,6 +109,21 @@ public class DayViewFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }
+            try {
+                this.weatherInfo = Jsoup.connect(weatherUrl).ignoreContentType(true).execute().body();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                this.jsonWeather = new JSONObject(weatherInfo);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                this.finalData[5] = jsonWeather.getString("clouds");
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
             return finalData;
         }
