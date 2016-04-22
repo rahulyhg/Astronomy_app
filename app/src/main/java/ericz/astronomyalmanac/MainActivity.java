@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             mFragments[4] = (JupiterViewFragment.newInstance());
             transaction.add(R.id.moonView, mFragments[0]);
             transaction.add(R.id.dayView, mFragments[1]);
-            transaction.add(R.id.saturnView, mFragments[2]);
+
 
             transaction.commit();
 
