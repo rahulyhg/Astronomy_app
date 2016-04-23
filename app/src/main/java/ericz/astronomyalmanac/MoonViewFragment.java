@@ -133,7 +133,7 @@ public class MoonViewFragment extends Fragment {
         private JSONObject jsonObject;
         private JSONArray jsonArray;
         private String moonPhase;
-        private String[] finalData = new String[3];
+        private String[] finalData = new String[4];
         @Override
         protected String[] doInBackground(Void... params) {
 
@@ -167,11 +167,23 @@ public class MoonViewFragment extends Fragment {
                 }
             }
             try {
-                this.moonPhase = jsonObject.getString("curphase");
+                this.finalData[2] = jsonObject.getString("curphase");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            this.finalData[2] = moonPhase;
+
+            if (this.moonPhase == null){
+                try {
+                    this.finalData[2] = jsonObject.getString("closestphase").substring(9);
+                    int moonIndex = this.finalData[2].indexOf(",") - 1;
+                    this.finalData[2] = this.finalData[2].substring(0, moonIndex);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
             return finalData;
         }
 
