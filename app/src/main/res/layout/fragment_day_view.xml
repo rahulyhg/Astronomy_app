@@ -32,7 +32,6 @@
             android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PlaceHolder"
             android:id="@+id/weatherText"
             android:layout_below="@+id/sunImage"
             android:layout_alignParentStart="true" />
@@ -41,7 +40,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="PlaceHolder"
             android:id="@+id/sunriseText"
             android:layout_below="@+id/weatherText"
             android:layout_alignParentStart="true"

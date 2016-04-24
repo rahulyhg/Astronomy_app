@@ -1,6 +1,7 @@
 package ericz.astronomyalmanac;
 
 import android.app.Fragment;
+import android.content.Context;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,7 +27,10 @@ public class MoonViewFragment extends Fragment {
     Typeface font;
     CardView mCardView;
     private String moonPhase;
+    String moonRiseTime;
+    String moonSetTime;
     private String[] dataArray;
+    Context context;
     public static MoonViewFragment newInstance()
     {
 
@@ -33,8 +38,9 @@ public class MoonViewFragment extends Fragment {
         fragment.setRetainInstance(true);
         return fragment;
     }
-    public MoonViewFragment() {
-        // singleton
+    public MoonViewFragment()
+    {
+
     }
 
     @Override
@@ -72,19 +78,36 @@ public class MoonViewFragment extends Fragment {
 
         TextView moonLabelText = (TextView)view.findViewById(R.id.moonLabelText);
 
-       // moonRiseText.setText("The moon will rise at " + this.dataArray[1] + "and set at "
-         //       + this.dataArray[2]);
 
-        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "RobotoSlab-Regular.ttf");
+
+        font = Typeface.createFromAsset(getContext().getAssets(), "RobotoSlab-Regular.ttf");
         moonLabelText.bringToFront();
         moonLabelText.setTypeface(font);
         this.moonPhase = this.dataArray[2];
         TextView moonPhaseText = (TextView)view.findViewById(R.id.moonPhaseText);
 
-        //I tried to use a switch case statement here but it always set the wrong moon phase.. not sure why
+        this.moonRiseTime = dataArray[1].substring(20, dataArray[1].indexOf("DT")-2);
+        this.moonSetTime = dataArray[0].substring(20, dataArray[1].indexOf("DT")-2);
 
-        moonRiseText.setText("The moon will rise at " + dataArray[1].substring(20, 28)
-                + " and set at " + dataArray[0].substring(20, 28));
+        Toast toast = Toast.makeText(getContext(), "Please check your internet connection", Toast.LENGTH_LONG);
+
+
+        if (this.moonRiseTime == null)
+            toast.show();
+
+        if(this.moonRiseTime.contains("a.m") && this.moonSetTime.contains("a.m"))
+            moonRiseText.setText("The moon will rise at " + moonRiseTime
+                    + ", and set at " + this.moonSetTime+ " tomorrow.");
+        if(this.moonRiseTime.contains("a.m") && this.moonSetTime.contains("pm"))
+            moonRiseText.setText("The moon will rise at " + moonRiseTime
+                    + ", and set at" + this.moonSetTime);
+        if(this.moonRiseTime.contains("p.m") && this.moonSetTime.contains("p.m"))
+            moonRiseText.setText("The moon will rise at " + moonRiseTime
+                    + ", and set at" + this.moonSetTime+ " tomorrow");
+
+
+
+
 
         try{
 
@@ -132,8 +155,8 @@ public class MoonViewFragment extends Fragment {
         private String jsonInfo;
         private JSONObject jsonObject;
         private JSONArray jsonArray;
-        private String moonPhase;
-        private String[] finalData = new String[4];
+
+        private String[] finalData = new String[3];
         @Override
         protected String[] doInBackground(Void... params) {
 
@@ -172,7 +195,7 @@ public class MoonViewFragment extends Fragment {
                 e.printStackTrace();
             }
 
-            if (this.moonPhase == null){
+            if (this.finalData[2] == null){
                 try {
                     this.finalData[2] = jsonObject.getString("closestphase").substring(9);
                     int moonIndex = this.finalData[2].indexOf(",") - 1;
