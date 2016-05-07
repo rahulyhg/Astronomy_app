@@ -1,7 +1,7 @@
 package ericz.astronomyalmanac;
 
 import android.app.Fragment;
-import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,25 +23,25 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
-
+//cite http://stackoverflow.com/questions/
+/* 31970751/java-lang-nullpointerexception-while-instantiating-intent-service-in-android*/
 public class MoonViewFragment extends Fragment {
     Typeface font;
+    View.OnClickListener onClickListener;
     CardView mCardView;
+    Button viewButton;
     private String moonPhase;
     String moonRiseTime;
     String moonSetTime;
     private String[] dataArray;
-    Context context;
     public static MoonViewFragment newInstance()
     {
-
         MoonViewFragment fragment = new MoonViewFragment();
         fragment.setRetainInstance(true);
         return fragment;
     }
     public MoonViewFragment()
     {
-
     }
 
     @Override
@@ -60,11 +61,12 @@ public class MoonViewFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mCardView = (CardView) view.findViewById(R.id.cardview);
-
+        this.viewButton.setOnClickListener((View.OnClickListener) this.getView());
         TextView moonRiseText = (TextView)view.findViewById(R.id.moonRiseText);
 
         GetMoonInfo getMoonInfo = new GetMoonInfo();
-        try {
+        try
+        {
             dataArray = getMoonInfo.execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -74,11 +76,7 @@ public class MoonViewFragment extends Fragment {
         ImageView moonImageView = (ImageView)view.findViewById(R.id.moonImageView);
         moonImageView.bringToFront();
 
-
-
         TextView moonLabelText = (TextView)view.findViewById(R.id.moonLabelText);
-
-
 
         font = Typeface.createFromAsset(getContext().getAssets(), "RobotoSlab-Regular.ttf");
         moonLabelText.bringToFront();
@@ -209,6 +207,7 @@ public class MoonViewFragment extends Fragment {
 
             return finalData;
         }
+
 
 
 
