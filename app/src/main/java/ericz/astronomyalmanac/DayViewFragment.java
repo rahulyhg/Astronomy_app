@@ -62,7 +62,8 @@ public class DayViewFragment extends Fragment {
         ImageView sunImage = (ImageView)view.findViewById(R.id.sunImage);
         sunImage.bringToFront();
         TextView weatherText = (TextView)view.findViewById(R.id.weatherText);
-        weatherText.setText("It is expected to be " + finalData[5].substring(7, 9)+ " % cloudy today");
+        weatherText.setText("It is expected to be " + finalData[5].substring(7,
+                finalData[5].indexOf("}"))+ " % cloudy today");
         TextView textView = (TextView)view.findViewById(R.id.sunriseText);
         textView.setText("The sun will rise at " + finalData[1].substring(20, 28) + " and set at "
                 + finalData[3].substring(20, 28));

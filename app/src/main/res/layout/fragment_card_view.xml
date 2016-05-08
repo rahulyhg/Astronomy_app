@@ -30,7 +30,8 @@
         <TextView
             android:elevation="12dp"
             android:textColor="#FFEB3B"
-            android:padding="10dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="2dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -75,8 +76,7 @@
             android:layout_height="wrap_content"
             android:text="View Details"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
-
-            android:id="@+id/button"
+            android:id="@+id/moonDetailsButton"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true" />
 
