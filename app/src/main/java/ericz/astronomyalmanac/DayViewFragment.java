@@ -51,6 +51,11 @@ public class DayViewFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mCardView = (CardView) view.findViewById(R.id.cardview1);
+        //Creates a sun info class; this is required because you cannot run network on the main thread
+        //so a new class that extends Async Task is used to let it run in the background
+        //there is a method called runInBackgroudn that returns a var of your choice to compute
+        //network stuff in the background
+        //I used a string array to get the needed data from multiple sources
         GetSunInfo getSunInfo = new GetSunInfo();
         try {
             this.finalData = getSunInfo.execute().get();
@@ -61,6 +66,8 @@ public class DayViewFragment extends Fragment {
         }
         ImageView sunImage = (ImageView)view.findViewById(R.id.sunImage);
         sunImage.bringToFront();
+        TextView sunTextView = (TextView)view.findViewById(R.id.sunTextView);
+        sunTextView.bringToFront();
         TextView weatherText = (TextView)view.findViewById(R.id.weatherText);
         weatherText.setText("It is expected to be " + finalData[5].substring(7,
                 finalData[5].indexOf("}"))+ " % cloudy today");

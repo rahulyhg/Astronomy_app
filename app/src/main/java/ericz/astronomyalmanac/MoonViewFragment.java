@@ -58,6 +58,16 @@ public class MoonViewFragment extends Fragment {
 
     }
 
+
+
+    /*
+    The onViewCreated class specifies what happens as soon as a View (which is like a s
+    screen) is created, and a Bundle(Can hold things like where you were scrolling in a
+    list) is passed in. IT is used to instantiate and populate TextViews and Buttons.
+    It is also used to call a second class GetMoonInfo to grab necessary data to populate
+    text and images and buttons.
+     */
+
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -74,8 +84,15 @@ public class MoonViewFragment extends Fragment {
         });
 
 
-
+        //this is the place where getmoon info is created; in the background
         GetMoonInfo getMoonInfo = new GetMoonInfo();
+
+
+        //this section grabs the data from getmooninfo by executing its body and
+        //getting the return value
+        //A new class needs to be created for this data because Android does not allow
+        //you to do internet data transactions on the main thread; That would make everything
+        //slow and frustrating
         try
         {
             dataArray = getMoonInfo.execute().get();
@@ -84,21 +101,27 @@ public class MoonViewFragment extends Fragment {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+        //creation of the imageview in the center containing the moon
         ImageView moonImageView = (ImageView)view.findViewById(R.id.moonImageView);
         moonImageView.bringToFront();
 
         TextView moonLabelText = (TextView)view.findViewById(R.id.moonLabelText);
 
         font = Typeface.createFromAsset(getContext().getAssets(), "RobotoSlab-Regular.ttf");
+        //Brings the moon label in yellow to the front because that cannot be done with XML
+        //layout
         moonLabelText.bringToFront();
+        //Sets that labels font
         moonLabelText.setTypeface(font);
-        this.moonPhase = this.dataArray[2];
+        //takes some of the data in the array from the GetMoonInfo classes return value
+        //(an array) and sets it to a normal string
+        this.moonPhase = this.dataArray[3];
         TextView moonPhaseText = (TextView)view.findViewById(R.id.moonPhaseText);
 
         this.moonRiseTime = dataArray[1].substring(20, dataArray[1].indexOf("DT")-2);
-        this.moonSetTime = dataArray[0].substring(20, dataArray[1].indexOf("DT")-2);
+        this.moonSetTime = dataArray[0].substring(20, dataArray[0].indexOf("DT")-2);
 
-        Toast toast = Toast.makeText(getContext(), "Please check your internet connection", Toast.LENGTH_LONG);
+
 
 
 
@@ -158,7 +181,7 @@ public class MoonViewFragment extends Fragment {
         private JSONObject jsonObject;
         private JSONArray jsonArray;
 
-        private String[] finalData = new String[3];
+        private String[] finalData = new String[4];
         @Override
         protected String[] doInBackground(Void... params) {
 
@@ -183,25 +206,30 @@ public class MoonViewFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            for (int i = 0; i<2; i++)
-            {
-                try {
-                    finalData[i] = this.jsonArray.getString(i);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+
+            try{
+                finalData[1] = this.jsonArray.getString(0);
+            }
+            catch (Exception e){
+
+            }
+            try{
+                finalData[0] = this.jsonArray.getString(2);
+            }
+            catch (Exception e){
+
             }
             try {
-                this.finalData[2] = jsonObject.getString("curphase");
+                this.finalData[3] = jsonObject.getString("curphase");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            if (this.finalData[2] == null){
+            if (this.finalData[3] == null){
                 try {
-                    this.finalData[2] = jsonObject.getString("closestphase").substring(9);
-                    int moonIndex = this.finalData[2].indexOf(",") - 1;
-                    this.finalData[2] = this.finalData[2].substring(0, moonIndex);
+                    this.finalData[3] = jsonObject.getString("closestphase").substring(9);
+                    int moonIndex = this.finalData[3].indexOf(",") - 1;
+                    this.finalData[3] = this.finalData[3].substring(0, moonIndex);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
