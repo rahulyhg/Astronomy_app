@@ -41,8 +41,7 @@ public class MoonViewFragment extends Fragment {
         return fragment;
     }
     public MoonViewFragment()
-    {
-    }
+    {    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

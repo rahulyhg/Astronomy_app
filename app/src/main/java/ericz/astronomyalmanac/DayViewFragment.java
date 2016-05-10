@@ -1,12 +1,15 @@
 package ericz.astronomyalmanac;
 
 import android.app.Fragment;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -64,10 +67,20 @@ public class DayViewFragment extends Fragment {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+        Button button = (Button)view.findViewById(R.id.viewSunDetails);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), SunDetails.class);
+                startActivity(intent);
+            }
+        });
+        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "RobotoSlab-Regular.ttf");
         ImageView sunImage = (ImageView)view.findViewById(R.id.sunImage);
         sunImage.bringToFront();
         TextView sunTextView = (TextView)view.findViewById(R.id.sunTextView);
         sunTextView.bringToFront();
+        sunTextView.setTypeface(font);
         TextView weatherText = (TextView)view.findViewById(R.id.weatherText);
         weatherText.setText("It is expected to be " + finalData[5].substring(7,
                 finalData[5].indexOf("}"))+ " % cloudy today");

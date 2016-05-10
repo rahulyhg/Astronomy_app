@@ -9,6 +9,7 @@ import android.view.View;
 
 
 public class MainActivity extends AppCompatActivity {
+        //fragment array
         Fragment[] mFragments =  new Fragment[5];
 
     @Override
@@ -16,7 +17,10 @@ public class MainActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
 
-
+        //A fragment transcation class lets FragmentActivity files (Like MoonViewFragment,
+        //DayViewFragment) get moved into views
+        //this section adds multiple fragment views into a fragment array
+        //the transactions at the bottom add some of the fragments into the main view you see
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
             mFragments[0] = (MoonViewFragment.newInstance());
             mFragments[1] = (DayViewFragment.newInstance());
@@ -33,9 +37,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-    public void startMoonDetails(View view)
-    {
-        Intent intent = new Intent(this, MoonDetails.class);
-        startActivity(intent);
-    }
+
 }

@@ -19,8 +19,6 @@ public class MoonDetails extends AppCompatActivity {
     ////http://stackoverflow.com/questions/18210700/best-method-to-download-image-from-url-in-android
 
 
-    String URL = "http://aa.usno.navy.mil/imagery/earth?view=moon&year=2016&month=5&day=4&hour=19&minute=42";
-    Bitmap earthViewBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +52,12 @@ public class MoonDetails extends AppCompatActivity {
             (Calendar.getInstance().get(Calendar.MONTH) + 1)
             + "/"
             + (Calendar.getInstance().get(Calendar.DAY_OF_MONTH))
-            + "/" + Calendar.getInstance().get(Calendar.YEAR);
+            + "/"
+            + Calendar.getInstance().get(Calendar.YEAR)
+            +"&time="
+            +Calendar.getInstance().HOUR_OF_DAY
+            +":"
+            +Calendar.getInstance().MINUTE;
         @Override
         protected Bitmap doInBackground(Void... params) {
             try {
