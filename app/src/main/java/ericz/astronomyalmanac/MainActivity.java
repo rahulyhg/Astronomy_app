@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
             mFragments[2] = (SaturnViewFragment.newInstance());
             mFragments[3] = (VenusViewFragment.newInstance());
             mFragments[4] = (JupiterViewFragment.newInstance());
-        //some classes are left un implemented becaues I didn't have time to finish them
             transaction.add(R.id.moonView, mFragments[0]);
             transaction.add(R.id.dayView, mFragments[1]);
 
