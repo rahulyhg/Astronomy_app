@@ -228,7 +228,7 @@ public class MoonViewFragment extends Fragment {
                 try {
                     this.finalData[3] = jsonObject.getString("closestphase").substring(9);
                     int moonIndex = this.finalData[3].indexOf(",") - 1;
-                    this.finalData[3] = this.finalData[3].substring(0, moonIndex);
+                    this.finalData[3] = this.finalData[3].substring(1, moonIndex);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
