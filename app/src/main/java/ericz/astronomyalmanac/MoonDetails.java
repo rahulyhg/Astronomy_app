@@ -37,8 +37,6 @@ public class MoonDetails extends AppCompatActivity {
 
         earthView.setImageBitmap(bitmap);
 
-
-
     }
 
 

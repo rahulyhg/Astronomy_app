@@ -1,3 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.1.1_40218ef5d11ec8fc64108582734e4e6d4cfc934a\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-23.1.1_11ede7d159f5a84c0e5fe88d177902093b38b2b3\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\libs\jsoup-1.8.3.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="3a86e137575e4a45f5a9eec407f8135512e823a2">
+        <dex dex="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\transforms\dex\debug\folders\1000\2\jsoup-1.8.3_3ae7643b274bafaf6e6d874d9c187c28ac69e32f\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="2884c9f9f81146eb802cc66e38abf38d54e0e3db">
+        <dex dex="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_6b0dde14051499f877e6f63bb69d56941530a90d\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f8131795e2fd3cf1388bb13ff10b2cce4b0f1481">
+        <dex dex="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_15e5b801c728efee5938a1d64e5a1cd742bf10ab\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Eric\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.1.1_419fb323ca552ed67bc1eef0ee17ecb782623e27\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-23.1.1_c881cd93ec23c6a57c609bad78e7b928167eccfa\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.1.1_9cabaa93d8a1789225043494c2a1e3a46e9ef7ba\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.1.1_1585af3d684d4d6b1f931a17446997a4ab85945e\classes.dex" />
+    </item>
+    <item
+        jar="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.1.1\jars\classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="5e412e954a24c5310a459c09870e4e2081aceb03">
+        <dex dex="C:\Users\Eric\Documents\GitHub\Astronomy_app\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-23.1.1_080bdb7c9d0356fb43227cf96932d03bdc9fb0b2\classes.dex" />
+    </item>
+
+</items>
