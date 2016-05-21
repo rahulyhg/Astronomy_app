@@ -180,7 +180,7 @@ public class MoonViewFragment extends Fragment {
         private JSONObject jsonObject;
         private JSONArray jsonArray;
 
-        private String[] finalData = new String[4];
+        private String[] finalData = new String[5];
         @Override
         protected String[] doInBackground(Void... params) {
 
@@ -233,6 +233,13 @@ public class MoonViewFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            }
+            try {
+
+                this.finalData[4] = jsonObject.getString("nextmoondata");
+            }
+                catch (JSONException e) {
+                e.printStackTrace();
             }
 
 
