@@ -118,7 +118,14 @@ public class MoonViewFragment extends Fragment {
         TextView moonPhaseText = (TextView)view.findViewById(R.id.moonPhaseText);
 
         this.moonRiseTime = dataArray[1].substring(20, dataArray[1].indexOf("DT")-2);
-        this.moonSetTime = dataArray[0].substring(20, dataArray[0].indexOf("DT")-2);
+        try{
+            this.moonSetTime = dataArray[0].substring(20, dataArray[0].indexOf("DT")-2);
+        }
+        catch (NullPointerException e)
+        {
+            this.moonSetTime = "The moon will rise again as a " + this.dataArray[3];
+        }
+
 
 
 
@@ -153,7 +160,7 @@ public class MoonViewFragment extends Fragment {
             if(this.moonPhase.equals("First Quarter"))
                 moonImageView.setImageResource(R.drawable.first_quarter);
 
-            if(this.moonPhase.equals("Third Quarter"))
+            if(this.moonPhase.equals("Last Quarter"))
                 moonImageView.setImageResource(R.drawable.third_quarter);
 
             if(this.moonPhase.equals("Waxing Gibbous"))
@@ -234,13 +241,7 @@ public class MoonViewFragment extends Fragment {
                     e.printStackTrace();
                 }
             }
-            try {
 
-                this.finalData[4] = jsonObject.getString("nextmoondata");
-            }
-                catch (JSONException e) {
-                e.printStackTrace();
-            }
 
 
             return finalData;

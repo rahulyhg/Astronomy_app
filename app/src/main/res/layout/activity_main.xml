@@ -40,11 +40,12 @@
 
         android:padding="5dp"
         android:layout_below="@+id/dayView"
-        android:id="@+id/saturnView"
+        android:id="@+id/apodView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </FrameLayout>
+
 
 </RelativeLayout>
 </ScrollView>

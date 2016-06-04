@@ -24,12 +24,12 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
             mFragments[0] = (MoonViewFragment.newInstance());
             mFragments[1] = (DayViewFragment.newInstance());
-            mFragments[2] = (SaturnViewFragment.newInstance());
-            mFragments[3] = (VenusViewFragment.newInstance());
-            mFragments[4] = (JupiterViewFragment.newInstance());
+            mFragments[2] = (Apod.newInstance());
+
         //some classes are left un implemented becaues I didn't have time to finish them
             transaction.add(R.id.moonView, mFragments[0]);
             transaction.add(R.id.dayView, mFragments[1]);
+            transaction.add(R.id.apodView, mFragments[2]);
 
 
             transaction.commit();
