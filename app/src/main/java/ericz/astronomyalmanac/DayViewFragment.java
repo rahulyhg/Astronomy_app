@@ -3,6 +3,7 @@ package ericz.astronomyalmanac;
 import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -75,10 +76,14 @@ public class DayViewFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "RobotoSlab-Regular.ttf");
         ImageView sunImage = (ImageView)view.findViewById(R.id.sunImage);
         sunImage.bringToFront();
+
         TextView sunTextView = (TextView)view.findViewById(R.id.sunTextView);
+        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "RobotoSlab-Regular.ttf");
+
+
+
         sunTextView.bringToFront();
         sunTextView.setTypeface(font);
         TextView weatherText = (TextView)view.findViewById(R.id.weatherText);

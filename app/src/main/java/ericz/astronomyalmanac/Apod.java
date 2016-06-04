@@ -63,14 +63,15 @@ public class Apod extends Fragment {
         ImageView imageView = (ImageView)view.findViewById(R.id.apodimageview);
         GetApodURL getApodURL = new GetApodURL();
 
+//I honestly don't know how the next 15 lines of code work
+        GetApod getApod = null;
         try {
-            String source = getApodURL.execute().get();
+            getApod = new GetApod(getApodURL.execute().get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        GetApod getApod = new GetApod(source);
         Bitmap bitmap = null;
         try {
             bitmap = getApod.execute().get();
@@ -80,17 +81,7 @@ public class Apod extends Fragment {
             e.printStackTrace();
         }
 
-        if (bitmap != null){
-            imageView.setImageBitmap(bitmap);
-
-        }
-        else
-        {
-            Toast toast = Toast.makeText(this.getContext(),
-                    "Check your internet connection and try again",
-                    Toast.LENGTH_SHORT);
-            toast.show();
-        }
+        imageView.setImageBitmap(bitmap);
     }
 
 
@@ -118,8 +109,8 @@ public class Apod extends Fragment {
 
                 Bitmap bigBitmap = BitmapFactory.decodeStream(input);
                 Bitmap resized = Bitmap.createScaledBitmap(bigBitmap,
-                        (int)(bigBitmap.getWidth()*0.7),
-                        (int)(bigBitmap.getHeight()*0.7),
+                        (int)(bigBitmap.getWidth()*0.3),
+                        (int)(bigBitmap.getHeight()*0.3),
                         true);
                 Log.v("image was created", "echckec");
                 return resized;
@@ -144,7 +135,7 @@ public class Apod extends Fragment {
                 this.jsonInfo = Jsoup.connect(JSONObjectURL).ignoreContentType(true).execute().body();
             } catch (IOException e) {
                 e.printStackTrace();
-                Toast toast = Toast.makeText(getContext(), "check your internet connection", Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(getContext(), "check your internet connectionmeme", Toast.LENGTH_SHORT);
                 toast.show();
             }
             try {
