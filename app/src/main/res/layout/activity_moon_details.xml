@@ -16,7 +16,7 @@
             android:src="@drawable/moonasdfasdf"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:id="@+id/viewOfEarth"
+            android:id="@+id/apodimageview"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
@@ -26,7 +26,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Current View of the Moon"
             android:id="@+id/textView"
-            android:layout_below="@+id/viewOfEarth"
+            android:layout_below="@+id/apodimageview"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
 

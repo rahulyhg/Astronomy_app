@@ -1,6 +1,7 @@
 package ericz.astronomyalmanac;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -63,6 +65,18 @@ public class Apod extends Fragment {
         ImageView imageView = (ImageView)view.findViewById(R.id.apodimageview);
         GetApodURL getApodURL = new GetApodURL();
 
+
+
+
+
+        Button button = (Button)view.findViewById(R.id.apoddetailbutton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ApodDetails.class);
+                startActivity(intent);
+            }
+        });
 //I honestly don't know how the next 15 lines of code work
         GetApod getApod = null;
         try {
@@ -153,6 +167,7 @@ public class Apod extends Fragment {
             {
                 e.printStackTrace();
             }
+
 
 
             Log.v("URL Check", this.url);

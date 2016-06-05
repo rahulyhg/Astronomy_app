@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
             mFragments[2] = (Apod.newInstance());
 
         //some classes are left un implemented becaues I didn't have time to finish them
-            transaction.add(R.id.moonView, mFragments[0]);
-            transaction.add(R.id.dayView, mFragments[1]);
-            transaction.add(R.id.apodView, mFragments[2]);
+            transaction.replace(R.id.moonView, mFragments[0]);
+            transaction.replace(R.id.dayView, mFragments[1]);
+            transaction.replace(R.id.apodView, mFragments[2]);
 
 
             transaction.commit();

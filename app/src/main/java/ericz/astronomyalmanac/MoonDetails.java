@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +23,7 @@ public class MoonDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_moon_details);
-        ImageView earthView = (ImageView) findViewById(R.id.viewOfEarth);
+        ImageView earthView = (ImageView) findViewById(R.id.apodimageview);
         getMoonPicture getMoonPicture = new getMoonPicture();
         Bitmap bitmap = null;
         try {

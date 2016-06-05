@@ -101,7 +101,7 @@ public class MoonViewFragment extends Fragment {
             e.printStackTrace();
         }
         //creation of the imageview in the center containing the moon
-        ImageView moonImageView = (ImageView)view.findViewById(R.id.moonImageView);
+        ImageView moonImageView = (ImageView)view.findViewById(R.id.apodimageview);
         moonImageView.bringToFront();
 
         TextView moonLabelText = (TextView)view.findViewById(R.id.moonLabelText);
