@@ -28,23 +28,30 @@
             android:text="Title Text"
             android:id="@+id/APODTitleText"
             android:layout_below="@+id/apodimageview"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            />
+
         <TextView
+
             android:padding="10dp"
             android:id="@+id/descriptionTextView"
             android:text="Description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/APODTitleText"/>
+            android:layout_below="@+id/APODTitleText"
+            />
 
-        <ImageButton
 
-            android:id="@+id/imageButton"
-            android:layout_below="@+id/apodimageview"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/othercircle"
+        <android.support.design.widget.FloatingActionButton
+            android:padding="4dp"
+            android:layout_marginBottom="13dp"
+            android:id="@+id/myFAB"
+            android:layout_alignEnd="@id/descriptionTextView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_above="@id/descriptionTextView"
+            android:elevation="10dp"
+         />
 
     </RelativeLayout>
 
