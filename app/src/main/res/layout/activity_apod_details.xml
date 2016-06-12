@@ -3,11 +3,13 @@
 
 <ScrollView android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:backgroundTint="@color/backgroundColor"
 
         tools:context="ericz.astronomyalmanac.MoonDetails">
 
@@ -42,9 +44,8 @@
             />
 
 
-        <android.support.design.widget.FloatingActionButton
-            android:padding="4dp"
-            android:layout_marginBottom="13dp"
+        <android.support.design.widget.FloatingActionButton android:padding="4dp"
+            android:layout_marginBottom="15dp"
             android:id="@+id/myFAB"
             android:layout_alignEnd="@id/descriptionTextView"
             android:layout_width="wrap_content"

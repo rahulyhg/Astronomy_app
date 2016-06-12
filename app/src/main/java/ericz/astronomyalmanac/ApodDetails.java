@@ -3,8 +3,11 @@ package ericz.astronomyalmanac;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,9 +30,12 @@ public class ApodDetails extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apod_details);
+        FloatingActionButton floatingActionButton = (FloatingActionButton)findViewById(R.id.myFAB);
         ImageView apodImageView = (ImageView)findViewById(R.id.apodimageview);
         TextView titleTextView = (TextView)findViewById(R.id.APODTitleText);
         TextView descriptionTextView = (TextView)findViewById(R.id.descriptionTextView);
+        floatingActionButton.getBackground().setColorFilter(Color.parseColor("#FFEB3B"),
+                PorterDuff.Mode.DARKEN);
 
         GetAPODDetails getAPODDetails = new GetAPODDetails();
         try {
