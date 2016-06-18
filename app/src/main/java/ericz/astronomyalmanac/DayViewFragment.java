@@ -68,14 +68,9 @@ public class DayViewFragment extends Fragment {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        Button button = (Button)view.findViewById(R.id.viewSunDetails);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), SunDetails.class);
-                startActivity(intent);
-            }
-        });
+
+
+
         ImageView sunImage = (ImageView)view.findViewById(R.id.sunImage);
         sunImage.bringToFront();
 
