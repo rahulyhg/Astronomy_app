@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -31,34 +33,27 @@ public class ApodDetails extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apod_details);
         FloatingActionButton floatingActionButton = (FloatingActionButton)findViewById(R.id.myFAB);
-        ImageView apodImageView = (ImageView)findViewById(R.id.apodimageview);
-        TextView titleTextView = (TextView)findViewById(R.id.APODTitleText);
-        TextView descriptionTextView = (TextView)findViewById(R.id.descriptionTextView);
+
         floatingActionButton.getBackground().setColorFilter(Color.parseColor("#FFEB3B"),
                 PorterDuff.Mode.DARKEN);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "RobotoSlab-Regular.ttf");
 
         GetAPODDetails getAPODDetails = new GetAPODDetails();
         try {
-            this.dataArray = getAPODDetails.execute().get();
+            this.hdURL = getAPODDetails.execute().get();
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        GetAPOD getAPOD = new GetAPOD(dataArray[2]);
-        this.titleText = this.dataArray[0];
-        this.descriptionText = this.dataArray[1];
-        try {
-            this.bitmap = getAPOD.execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+        TextView titleText = (TextView)findViewById(R.id.APODTitleText);
+        titleText.setTypeface(typeface);
+        GetAPOD getAPOD = new GetAPOD(this.hdURL);
+        getAPOD.execute();
 
-        apodImageView.setImageBitmap(bitmap);
-        titleTextView.setText( titleText);
-        descriptionTextView.setText(descriptionText);
+
+
+
 
 
 
@@ -68,7 +63,7 @@ public class ApodDetails extends Activity {
 
 
 
-    public class GetAPODDetails extends AsyncTask<Void, String, String[]>
+    public class GetAPODDetails extends AsyncTask<Void, String, String>
 
     {
         private String[] finalData;
@@ -80,7 +75,7 @@ public class ApodDetails extends Activity {
         String src = "https://api.nasa.gov/planetary/apod?api_key=NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo";
 
         @Override
-        protected String[] doInBackground(Void... params) {
+        protected String doInBackground(Void... params) {
 
 
 
@@ -120,12 +115,23 @@ public class ApodDetails extends Activity {
                 e.printStackTrace();
             }
 
-            this.finalData = new String[3];
-            this.finalData[0] = this.title;
-            this.finalData[1] = this.description;
-            this.finalData[2] = this.hdURL;
-            return finalData;
+
+
+            return this.hdURL;
         }
+        public void onPostExecute(String string)
+        {
+
+            TextView titleText = (TextView)findViewById(R.id.APODTitleText);
+            titleText.setText(this.title);
+
+
+            TextView descriptionText = (TextView)findViewById(R.id.descriptionTextView);
+            descriptionText.setText(this.description);
+
+
+        }
+
 
 
     }
@@ -156,6 +162,14 @@ public class ApodDetails extends Activity {
 
 
             return bitmap;
+        }
+
+        protected void onPostExecute(Bitmap bitmap)
+        {
+            ImageView imageView = (ImageView)findViewById(R.id.apodimageview);
+            imageView.setImageBitmap(this.bitmap);
+
+
         }
     }
 

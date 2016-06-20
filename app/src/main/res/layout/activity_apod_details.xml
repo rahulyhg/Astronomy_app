@@ -9,18 +9,19 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:backgroundTint="@color/backgroundColor"
+        android:backgroundTint="#303030"
 
         tools:context="ericz.astronomyalmanac.MoonDetails">
 
         <ImageView
+
             android:scaleType="centerCrop"
-            android:src="@drawable/moonasdfasdf"
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_width="wrap_content"
             android:id="@+id/apodimageview"
+
             android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_height="250dp" />
 
         <TextView
             android:padding="10dp"
@@ -29,9 +30,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Title Text"
             android:id="@+id/APODTitleText"
-            android:layout_below="@+id/apodimageview"
-            android:layout_centerHorizontal="true"
-            />
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
 
         <TextView
 
@@ -40,18 +40,27 @@
             android:text="Description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/APODTitleText"
+            android:layout_below="@+id/explanation"
             />
+        <TextView
+            android:padding="10dp"
+            android:id="@+id/explanation"
+            android:layout_below="@id/apodimageview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Explanation"/>
 
 
         <android.support.design.widget.FloatingActionButton android:padding="4dp"
-            android:layout_marginBottom="15dp"
             android:id="@+id/myFAB"
             android:layout_alignEnd="@id/descriptionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/descriptionTextView"
+            android:layout_below="@id/apodimageview"
+            android:layout_marginTop="-29dp"
+            android:layout_marginRight="15dp"
             android:elevation="10dp"
+            android:src="@mipmap/ic_download"
          />
 
     </RelativeLayout>

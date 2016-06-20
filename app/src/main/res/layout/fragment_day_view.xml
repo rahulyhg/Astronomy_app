@@ -8,14 +8,13 @@
     android:layout_margin="2dp"
     android:id="@+id/cardview1"
     android:layout_width="fill_parent"
-    android:layout_height="190dp"
-
+    android:layout_height="wrap_content"
     card_view:cardCornerRadius="3dp">
 
     <RelativeLayout
         android:background="@color/cardColor"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent" >
 
         <ImageView
             android:elevation="11dp"
@@ -43,10 +42,10 @@
             android:id="@+id/sunriseText"
             android:layout_below="@+id/weatherText"
             android:layout_alignParentStart="true"
-            android:paddingLeft="10dp" />
+            android:paddingLeft="10dp"
+            android:paddingBottom="10dp"/>
 
         <TextView
-
             android:textColor="#FFEB3B"
             android:padding="10dp"
             android:layout_width="wrap_content"
@@ -65,7 +64,7 @@
             android:id="@+id/starsImageView"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
-            android:src="@drawable/sky"
+            android:src="@drawable/stars_background_alt"
             android:layout_alignBottom="@+id/sunImage" />
 
 

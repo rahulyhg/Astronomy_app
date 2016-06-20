@@ -123,8 +123,8 @@ public class Apod extends Fragment {
 
                 Bitmap bigBitmap = BitmapFactory.decodeStream(input);
                 Bitmap resized = Bitmap.createScaledBitmap(bigBitmap,
-                        (int)(bigBitmap.getWidth()*0.3),
-                        (int)(bigBitmap.getHeight()*0.3),
+                        (int)(bigBitmap.getWidth()*0.6),
+                        (int)(bigBitmap.getHeight()*0.6),
                         true);
                 Log.v("image was created", "echckec");
                 return resized;

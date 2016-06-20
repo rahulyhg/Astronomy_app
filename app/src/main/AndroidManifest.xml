@@ -26,7 +26,6 @@
         </activity>
         <activity android:name=".SplashActivity"/>
         <activity android:name=".MoonDetails" />
-        <activity android:name=".SunDetails" />
         <activity android:name=".ApodDetails"></activity>
     </application>
 

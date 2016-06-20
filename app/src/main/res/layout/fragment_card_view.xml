@@ -8,14 +8,14 @@
     android:layout_margin="2dp"
     android:id="@+id/cardview"
     android:layout_width="match_parent"
-    android:layout_height="210dp"
+    android:layout_height="wrap_content"
 
     card_view:cardCornerRadius="3dp">
 
     <RelativeLayout
         android:background="@color/cardColor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:elevation="11dp"
@@ -72,13 +72,14 @@
             android:layout_alignBottom="@+id/apodimageview" />
 
         <Button
+            android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="View Details"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:id="@+id/moonDetailsButton"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
+            android:layout_below="@id/moonRiseText"
+             />
 
     </RelativeLayout>
 

@@ -8,7 +8,7 @@
     android:layout_margin="2dp"
     android:id="@+id/cardview"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="wrap_content"
 
     card_view:cardCornerRadius="3dp">
 
@@ -27,16 +27,6 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
              />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="View Details"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:id="@+id/apoddetailbutton"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
-
         <TextView
             android:paddingLeft="10dp"
             android:padding="10dp"
@@ -47,6 +37,16 @@
             android:id="@+id/textView2"
             android:layout_below="@+id/apodimageview"
             android:layout_alignParentStart="true" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Details"
+            android:layout_below="@id/textView2"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:id="@+id/apoddetailbutton"
+            android:layout_alignParentStart="true" />
+
+
 
     </RelativeLayout>
 
