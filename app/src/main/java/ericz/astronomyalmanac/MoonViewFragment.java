@@ -41,7 +41,7 @@ public class MoonViewFragment extends Fragment {
         return fragment;
     }
     public MoonViewFragment()
-    {    }
+    {   }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -106,7 +106,7 @@ public class MoonViewFragment extends Fragment {
 
         TextView moonLabelText = (TextView)view.findViewById(R.id.moonLabelText);
 
-        font = Typeface.createFromAsset(getContext().getAssets(), "RobotoSlab-Regular.ttf");
+        font = Typeface.createFromAsset(getActivity().getApplicationContext().getAssets(), "RobotoSlab-Regular.ttf");
         //Brings the moon label in yellow to the front because that cannot be done with XML
         //layout
         moonLabelText.bringToFront();
@@ -117,10 +117,10 @@ public class MoonViewFragment extends Fragment {
         this.moonPhase = this.dataArray[3];
         TextView moonPhaseText = (TextView)view.findViewById(R.id.moonPhaseText);
 
-        this.moonRiseTime = dataArray[1].substring(20, dataArray[1].indexOf("DT")-2);
+        this.moonRiseTime = dataArray[0].substring(20, dataArray[0].indexOf("DT")-2);
         try
         {
-            this.moonSetTime = dataArray[0].substring(20, dataArray[0].indexOf("DT")-2);
+            this.moonSetTime = dataArray[1].substring(20, dataArray[1].indexOf("DT")-2);
         }
         catch (NullPointerException e)
         {
@@ -143,9 +143,6 @@ public class MoonViewFragment extends Fragment {
             moonRiseText.setText("The moon will rise at " + moonRiseTime
                     + ", and set at " + this.moonSetTime);
         }
-
-
-
 
 
 
@@ -181,8 +178,8 @@ public class MoonViewFragment extends Fragment {
 
         }
         catch (Exception e){
-            Toast toast1 = Toast.makeText(this.getContext(),
-                    "Pleaes check your internet connection", Toast.LENGTH_SHORT);
+            Toast toast1 = Toast.makeText(getActivity().getApplicationContext(),
+                    "Please check your internet connection", Toast.LENGTH_SHORT);
             toast1.show();
         }
 
@@ -224,7 +221,7 @@ public class MoonViewFragment extends Fragment {
             }
 
             try{
-                finalData[1] = this.jsonArray.getString(0);
+                finalData[1] = this.jsonArray.getString(1);
             }
             catch (Exception e){
 
@@ -238,14 +235,14 @@ public class MoonViewFragment extends Fragment {
             try {
                 this.finalData[3] = jsonObject.getString("curphase");
             } catch (JSONException e) {
-                e.printStackTrace();
+                this.finalData[3] = null;
             }
 
             if (this.finalData[3] == null){
                 try {
-                    this.finalData[1] = this.jsonArray.getString(1);
+                    this.finalData[1] = this.jsonArray.getString(0);
                     this.finalData[3] = jsonObject.getString("closestphase").substring(9);
-                    int moonIndex = this.finalData[3].indexOf(",") - 1;
+                    int moonIndex = this.finalData[3].indexOf("d") - 2;
                     this.finalData[3] = this.finalData[3].substring(1, moonIndex);
 
                 } catch (JSONException e) {

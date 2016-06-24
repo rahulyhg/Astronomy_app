@@ -53,6 +53,7 @@
 
         <android.support.design.widget.FloatingActionButton android:padding="4dp"
             android:id="@+id/myFAB"
+            android:onClick="shareImage"
             android:layout_alignEnd="@id/descriptionTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

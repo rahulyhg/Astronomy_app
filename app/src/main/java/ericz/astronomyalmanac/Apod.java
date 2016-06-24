@@ -73,7 +73,7 @@ public class Apod extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ApodDetails.class);
+                Intent intent = new Intent(getActivity().getApplicationContext(), ApodDetails.class);
                 startActivity(intent);
             }
         });

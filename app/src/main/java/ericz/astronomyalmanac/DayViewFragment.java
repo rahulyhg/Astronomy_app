@@ -75,7 +75,7 @@ public class DayViewFragment extends Fragment {
         sunImage.bringToFront();
 
         TextView sunTextView = (TextView)view.findViewById(R.id.sunTextView);
-        Typeface font = Typeface.createFromAsset(getContext().getAssets(), "RobotoSlab-Regular.ttf");
+        Typeface font = Typeface.createFromAsset(getActivity().getApplicationContext().getAssets(), "RobotoSlab-Regular.ttf");
 
 
 
