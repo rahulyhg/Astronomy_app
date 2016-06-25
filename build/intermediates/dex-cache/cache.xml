@@ -1,12 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" >
+<items version="2" />
 
-    <item
-        jar="C:\Users\ericz\Documents\Astronomy_app\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        revision="23.0.2"
-        sha1="a005c079ed66a4e46b356641e2007157da4849f4">
-        <dex dex="C:\Users\ericz\Documents\Astronomy_app\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_78e92d1a0279cc81e2a46120b22a5f7253756393\classes.dex" />
-    </item>
-
-</items>
