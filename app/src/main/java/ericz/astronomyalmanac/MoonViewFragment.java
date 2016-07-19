@@ -78,6 +78,7 @@ public class MoonViewFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), MoonDetails.class);
+                intent.putExtra("Moon phase", dataArray[3]);
                 startActivity(intent);
             }
         });
@@ -116,8 +117,13 @@ public class MoonViewFragment extends Fragment {
         //(an array) and sets it to a normal string
         this.moonPhase = this.dataArray[3];
         TextView moonPhaseText = (TextView)view.findViewById(R.id.moonPhaseText);
+        try{
+            this.moonRiseTime = dataArray[1].substring(20, dataArray[0].indexOf("DT")-2);
 
-        this.moonRiseTime = dataArray[0].substring(20, dataArray[0].indexOf("DT")-2);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
         try
         {
             this.moonSetTime = dataArray[1].substring(20, dataArray[1].indexOf("DT")-2);

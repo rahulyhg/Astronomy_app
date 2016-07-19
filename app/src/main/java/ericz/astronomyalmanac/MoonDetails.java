@@ -23,18 +23,16 @@ public class MoonDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_moon_details);
-        ImageView earthView = (ImageView) findViewById(R.id.apodimageview);
         getMoonPicture getMoonPicture = new getMoonPicture();
-        Bitmap bitmap = null;
+
         try {
-            bitmap = getMoonPicture.execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+            getMoonPicture.execute();
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
 
-        earthView.setImageBitmap(bitmap);
 
     }
 
@@ -45,6 +43,9 @@ public class MoonDetails extends AppCompatActivity {
     public class getMoonPicture extends AsyncTask<Void, String, Bitmap>
 
     {
+        private ImageView earthView;
+
+        private Bitmap bitmap;
     String src = "http://api.usno.navy.mil/imagery/moon.png?&date="+
             (Calendar.getInstance().get(Calendar.MONTH) + 1)
             + "/"
@@ -64,12 +65,27 @@ public class MoonDetails extends AppCompatActivity {
                 connection.setDoInput(true);
                 connection.connect();
                 InputStream input = connection.getInputStream();
-                return BitmapFactory.decodeStream(input);
+                this.bitmap =  BitmapFactory.decodeStream(input);
+                return this.bitmap;
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
             }
         }
+        protected void onPreExecute()
+        {
+            this.earthView = (ImageView) findViewById(R.id.apodimageview);
+
+
+        }
+        protected void onPostExecute(Bitmap result)
+        {
+            this.earthView.setImageBitmap(this.bitmap);
+        }
+
+
+
+
     }
 
 
