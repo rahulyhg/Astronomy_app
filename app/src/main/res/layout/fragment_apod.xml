@@ -28,11 +28,13 @@
             android:layout_alignParentStart="true"
              />
         <TextView
+            android:textColor="#C7C7C7"
+
             android:paddingLeft="10dp"
             android:padding="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textAppearance="@android:style/TextAppearance.Medium"
             android:text="NASA&apos;s Astronomy Picture of the Day"
             android:id="@+id/textView2"
             android:layout_below="@+id/apodimageview"
@@ -45,7 +47,16 @@
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:id="@+id/apoddetailbutton"
             android:layout_alignParentStart="true" />
-
+        <TextView
+            android:padding="5dp"
+            android:text="APOD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/apodimageview"
+            android:layout_alignParentStart="true"
+            android:textColor="#FFEB3B"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:id="@+id/apodlable" />
 
 
     </RelativeLayout>

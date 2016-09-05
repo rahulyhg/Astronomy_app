@@ -7,19 +7,23 @@ import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
+
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 //cite http://stackoverflow.com/questions/
@@ -34,7 +38,7 @@ public class MoonViewFragment extends Fragment {
     String moonRiseTime;
     String moonSetTime;
     private String[] dataArray;
-    public static MoonViewFragment newInstance()
+    public static MoonViewFragment newInstance(String location)
     {
         MoonViewFragment fragment = new MoonViewFragment();
         fragment.setRetainInstance(true);
@@ -57,150 +61,55 @@ public class MoonViewFragment extends Fragment {
 
     }
 
-
-
-    /*
-    The onViewCreated class specifies what happens as soon as a View (which is like a s
-    screen) is created, and a Bundle(Can hold things like where you were scrolling in a
-    list) is passed in. IT is used to instantiate and populate TextViews and Buttons.
-    It is also used to call a second class GetMoonInfo to grab necessary data to populate
-    text and images and buttons.
-     */
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        GetMoonInfo getMoonInfo = new GetMoonInfo();
+
         mCardView = (CardView) view.findViewById(R.id.cardview);
-        TextView moonRiseText = (TextView)view.findViewById(R.id.moonRiseText);
+
+            getMoonInfo.execute();
+
+
 
         this.viewButton = (Button)view.findViewById(R.id.moonDetailsButton);
         this.viewButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), MoonDetails.class);
-                intent.putExtra("Moon phase", dataArray[3]);
+
                 startActivity(intent);
             }
         });
 
-
-        //this is the place where getmoon info is created; in the background
-        GetMoonInfo getMoonInfo = new GetMoonInfo();
-
-
-        //this section grabs the data from getmooninfo by executing its body and
-        //getting the return value
-        //A new class needs to be created for this data because Android does not allow
-        //you to do internet data transactions on the main thread; That would make everything
-        //slow and frustrating
-        try
-        {
-            dataArray = getMoonInfo.execute().get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-        //creation of the imageview in the center containing the moon
-        ImageView moonImageView = (ImageView)view.findViewById(R.id.apodimageview);
-        moonImageView.bringToFront();
-
-        TextView moonLabelText = (TextView)view.findViewById(R.id.moonLabelText);
-
-        font = Typeface.createFromAsset(getActivity().getApplicationContext().getAssets(), "RobotoSlab-Regular.ttf");
-        //Brings the moon label in yellow to the front because that cannot be done with XML
-        //layout
-        moonLabelText.bringToFront();
-        //Sets that labels font
-        moonLabelText.setTypeface(font);
-        //takes some of the data in the array from the GetMoonInfo classes return value
-        //(an array) and sets it to a normal string
-        this.moonPhase = this.dataArray[3];
-        TextView moonPhaseText = (TextView)view.findViewById(R.id.moonPhaseText);
-        try{
-            this.moonRiseTime = dataArray[1].substring(20, dataArray[0].indexOf("DT")-2);
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        try
-        {
-            this.moonSetTime = dataArray[1].substring(20, dataArray[1].indexOf("DT")-2);
-        }
-        catch (NullPointerException e)
-        {
-            this.moonRiseTime = ("the moon will rise at ")+ (String) this.moonRiseTime;
-            this.moonSetTime = "and will rise again as a " + this.dataArray[3];
-        }
-
-
-
-
-
-
-        if (this.moonSetTime  == this.dataArray[2])
-        {
-            moonRiseText.setText("The moon will rise at " + moonRiseTime
-                    + "" + this.moonSetTime);
-        }
-        else
-        {
-            moonRiseText.setText("The moon will rise at " + moonRiseTime
-                    + ", and set at " + this.moonSetTime);
-        }
-
-
-
-
-
-        try{
-
-            moonPhaseText.setText("Tonight's phase is a " + this.moonPhase);
-
-            if(this.moonPhase.equals("New Moon"))
-                moonImageView.setImageResource(R.drawable.new_moon);
-
-            if(this.moonPhase.equals("Full Moon"))
-                moonImageView.setImageResource(R.drawable.full_moon);
-
-            if(this.moonPhase.equals( "Waxing Crescent"))
-                moonImageView.setImageResource(R.drawable.waxing_crescent);
-
-            if(this.moonPhase.equals("Waning Crescent"))
-                moonImageView.setImageResource(R.drawable.waning_crescent);
-
-            if(this.moonPhase.equals("First Quarter"))
-                moonImageView.setImageResource(R.drawable.first_quarter);
-
-            if(this.moonPhase.equals("Last Quarter"))
-                moonImageView.setImageResource(R.drawable.third_quarter);
-
-            if(this.moonPhase.equals("Waxing Gibbous"))
-                moonImageView.setImageResource(R.drawable.waxing_gibbous);
-
-            if(this.moonPhase.equals("Waning Gibbous"))
-                moonImageView.setImageResource(R.drawable.waning_gibbous);
-
-        }
-        catch (Exception e){
-            Toast toast1 = Toast.makeText(getActivity().getApplicationContext(),
-                    "Please check your internet connection", Toast.LENGTH_SHORT);
-            toast1.show();
-        }
-
     }
-
-
 
 
     public class GetMoonInfo extends AsyncTask<Void, String, String[]>
     {
-        private String jsonInfo;
-        private JSONObject jsonObject;
-        private JSONArray jsonArray;
+        private String[] finalData = new String[3];
+        private String moonInfo;
+        private JSONArray moonArray;
+        private JSONObject moonObject;
 
-        private String[] finalData = new String[5];
+        private TextView moonPhaseText;
+        private TextView moonTextView;
+        private ImageView moonImageView;
+        private TextView moonText;
+
+        private String moonPhase;
+        private boolean gotAltPhase;
+
+
+        protected void onPreExecute()
+        {
+            this.moonTextView = (TextView)mCardView.findViewById(R.id.moonRiseText);
+            this.moonText = (TextView)mCardView.findViewById(R.id.moonLabelText);
+            this.moonImageView  = (ImageView)mCardView.findViewById(R.id.apodimageview);
+            this.moonPhaseText = (TextView)mCardView.findViewById(R.id.moonPhaseText);
+        }
+
+
         @Override
         protected String[] doInBackground(Void... params) {
 
@@ -211,54 +120,107 @@ public class MoonViewFragment extends Fragment {
                     + "/" + Calendar.getInstance().get(Calendar.YEAR)
                     + "&loc=Chicago,%20IL";
             try {
-                this.jsonInfo = Jsoup.connect(url).ignoreContentType(true).execute().body();
-            } catch (IOException e) {
+                this.moonInfo = Jsoup.connect(url).ignoreContentType(true).execute().body();
+            } catch (IOException e)
+            {
                 e.printStackTrace();
             }
             try {
-                this.jsonObject = new JSONObject(jsonInfo);
+                this.moonObject = new JSONObject(moonInfo);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             try {
-                this.jsonArray = jsonObject.getJSONArray("moondata");
-            } catch (JSONException e) {
+                this.moonArray = moonObject.getJSONArray("moondata");
+            } catch (JSONException e)
+            {
                 e.printStackTrace();
             }
-
-            try{
-                finalData[1] = this.jsonArray.getString(1);
-            }
-            catch (Exception e){
-
-            }
-            try{
-                finalData[0] = this.jsonArray.getString(2);
-            }
-            catch (Exception e){
-
-            }
-            try {
-                this.finalData[3] = jsonObject.getString("curphase");
-            } catch (JSONException e) {
-                this.finalData[3] = null;
-            }
-
-            if (this.finalData[3] == null){
-                try {
-                    this.finalData[1] = this.jsonArray.getString(0);
-                    this.finalData[3] = jsonObject.getString("closestphase").substring(9);
-                    int moonIndex = this.finalData[3].indexOf("d") - 2;
-                    this.finalData[3] = this.finalData[3].substring(1, moonIndex);
-
-                } catch (JSONException e) {
+            List<String> moonOutput = new ArrayList<>();
+            for (int i=0; i<moonArray.length(); i++) {
+                try
+                {
+                    moonOutput.add( moonArray.getString(i) );
+                }
+                catch (JSONException e)
+                {
                     e.printStackTrace();
                 }
             }
 
+            for (int i=0; i<moonOutput.size(); i++ )
+            {
+                if (moonOutput.get(i).contains("\"phen\":\"R\""))
+                    this.finalData[0] = moonOutput.get(i).substring(20, 29);
+                if (moonOutput.get(i).contains("\"phen\":\"S\""))
+                    this.finalData[1] = moonOutput.get(i).substring(20, 29);
+                else
+                    Log.v("Find", "Nothing found in array index");
+            }
+
+            try
+            {
+                this.finalData[2] = moonObject.getString("curphase");
+            }
+
+            catch (JSONException e)
+            {
+                e.printStackTrace();
+            }
+            if (this.finalData[2] == null)
+            {
+
+                try {
+                    this.moonPhase = moonObject.getJSONObject("closestphase").getString("phase");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
 
+            }
             return finalData;
+        }
+
+
+        protected void onPostExecute(String[] result)
+        {
+            this.moonText.bringToFront();
+            this.moonTextView.setText("the moon will rise at "+ finalData[0] +
+                    " and set at " + finalData[1]);
+            this.moonPhaseText.setText("Tonights phase is a " + this.finalData[2]);
+            try{
+
+
+                if(this.finalData[2].equals("New Moon"))
+                    moonImageView.setImageResource(R.drawable.new_moon);
+
+                if(this.finalData[2].equals("Full Moon"))
+                    moonImageView.setImageResource(R.drawable.full_moon);
+
+                if(this.finalData[2].equals( "Waxing Crescent"))
+                    moonImageView.setImageResource(R.drawable.waxing_crescent);
+
+                if(this.finalData[2].equals("Waning Crescent"))
+                    moonImageView.setImageResource(R.drawable.waning_crescent);
+
+                if(this.finalData[2].equals("First Quarter"))
+                    moonImageView.setImageResource(R.drawable.first_quarter);
+
+                if(this.finalData[2].equals("Last Quarter"))
+                    moonImageView.setImageResource(R.drawable.third_quarter);
+
+                if(this.finalData[2].equals("Waxing Gibbous"))
+                    moonImageView.setImageResource(R.drawable.waxing_gibbous);
+
+                if(this.finalData[2].equals("Waning Gibbous"))
+                    moonImageView.setImageResource(R.drawable.waning_gibbous);
+
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+
         }
 
 

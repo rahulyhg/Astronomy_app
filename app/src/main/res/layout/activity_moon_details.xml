@@ -7,7 +7,7 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="500dp"
 
         tools:context="ericz.astronomyalmanac.MoonDetails">
 
@@ -25,11 +25,86 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Current View of the Moon"
+            android:id="@+id/labelmoontext"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Moon Phase"
             android:id="@+id/textView"
             android:layout_below="@+id/apodimageview"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:padding="5dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:id="@+id/moonPhaseDetailImage"
+            android:src="@drawable/waning_gibbous"
+            android:layout_below="@+id/textView"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Moon Rise:"
+            android:id="@+id/textView4"
+            android:layout_below="@+id/moonPhaseDetailImage"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Moon Set:"
+            android:id="@+id/textView5"
+            android:layout_below="@+id/textView4"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="MEME"
+            android:id="@+id/moonRiseDetail"
+            android:layout_alignBottom="@+id/textView4"
+            android:layout_toEndOf="@+id/textView4" />
+
+        <TextView
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="MEME"
+            android:id="@+id/MoonSetDetail"
+            android:layout_alignBottom="@+id/textView5"
+            android:layout_toEndOf="@+id/textView5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="MEME"
+            android:id="@+id/moonPhaseDetailText"
+            android:layout_above="@+id/textView4"
+            android:layout_toEndOf="@+id/moonPhaseDetailImage" />
+
     </RelativeLayout>
 
 
 
+
 </ScrollView>
+
+
+
+
+

@@ -72,7 +72,6 @@ public class ApodDetails extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
         this.title = getAPODDetails.getTitle();
         TextView titleText = (TextView)findViewById(R.id.APODTitleText);
         titleText.setTypeface(typeface);
@@ -218,87 +217,8 @@ public class ApodDetails extends AppCompatActivity {
 
         }
     }
-    class DownloadImageAsyncTask extends AsyncTask<Void, Void, Void>
-    {
-        private String hdURLString;
-        private String titleString;
-        public DownloadImageAsyncTask(String title, String hdURL)
-        {
-            this.hdURLString = hdURL;
-            this.titleString = title + ".png";
-        }
-
-        @Override
-        protected Void doInBackground(Void... params)
-        {
-            // TODO Auto-generated method stub
-            downloadImages(this.titleString);
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result)
-        {
-            // TODO Auto-generated method stub
-            super.onPostExecute(result);
-
-        }
-
-    }
-    private void downloadImages(String title)
-    {
-
-        URL imageUrl; //your URL from which image to be downloaded
-        String domain;
-        try
-        {
-            imageUrl = new URL(ApodDetails.this.hdURL);
-
-            HttpURLConnection urlConnection;
-            try
-            {
-                urlConnection = (HttpURLConnection) imageUrl.openConnection();
-                urlConnection.setRequestMethod("GET");
-                urlConnection.setDoOutput(true);
-                urlConnection.connect();
-                String path = getApplication().getApplicationContext().getExternalCacheDir()
-                        + File.separator
-                        + getApplication().getApplicationContext().getResources().getString(R.string.app_name);
-                File f = new File(path);
-                if (!f.exists())
-                {
-                    f.mkdirs();
-                }
-                File file = new File(f, title+".png");
-                if (!file.exists())
-                {
-                    file.createNewFile();
-                }
-                FileOutputStream fileOutput = new FileOutputStream(file);
-                InputStream inputStream = urlConnection.getInputStream();
-                byte[] buffer = new byte[1024];
-                int bufferLength = 0; // used to store a temporary size of the
-                // buffer
-                while ((bufferLength = inputStream.read(buffer)) > 0)
-                {
-                    fileOutput.write(buffer, 0, bufferLength);
-                }
-                fileOutput.close();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
-
-        }
-        catch (MalformedURLException e)
-        {
-            e.printStackTrace();
 
 
-    }
-
-}
 
 }
 

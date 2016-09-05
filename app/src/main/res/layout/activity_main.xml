@@ -17,6 +17,7 @@
     <FrameLayout
         android:background="@color/backgroundColor"
         android:padding="5dp"
+
         android:id="@+id/moonView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,6 +45,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/dayView"
         android:layout_alignParentStart="true">
+
+    </FrameLayout>
+    <FrameLayout
+        android:padding="5dp"
+        android:background="@color/backgroundColor"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/apodView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationView"
+        >
+
 
     </FrameLayout>
 
