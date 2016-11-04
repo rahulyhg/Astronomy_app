@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,6 +52,7 @@ public class Apod extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_apod, container, false);
+       // ImageView imageView = (ImageView) getView().findViewById(R.id.apodimageview);
 
 
 
@@ -64,6 +65,10 @@ public class Apod extends Fragment {
         ImageView imageView = (ImageView)view.findViewById(R.id.apodimageview);
         GetApodURL getApodURL = new GetApodURL();
 
+
+
+
+
         Button button = (Button)view.findViewById(R.id.apoddetailbutton);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,17 +78,24 @@ public class Apod extends Fragment {
             }
         });
 //I honestly don't know how the next 15 lines of code work
+        GetApod getApod = null;
         try {
-            this.source = getApodURL.execute().get();
+            getApod = new GetApod(getApodURL.execute().get());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        GetApod getApod = new GetApod(source);
-        getApod.execute();
+        Bitmap bitmap = null;
+        try {
+            bitmap = getApod.execute().get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
-
+        imageView.setImageBitmap(bitmap);
     }
 
 
@@ -96,16 +108,9 @@ public class Apod extends Fragment {
         {
             this.src = src;
         }
-        private ImageView apodImageView;
-        private Bitmap resized;
-        private TextView apodlable;
 
-        protected void onPreExecute()
-        {
-            this.apodlable = (TextView)mCardView.findViewById(R.id.apodlable);
-            this.apodImageView = (ImageView)mCardView.findViewById(R.id.apodimageview);
 
-        }
+
         @Override
         protected Bitmap doInBackground(Void... params) {
             try {
@@ -117,7 +122,7 @@ public class Apod extends Fragment {
                 InputStream input = connection.getInputStream();
 
                 Bitmap bigBitmap = BitmapFactory.decodeStream(input);
-                this.resized = Bitmap.createScaledBitmap(bigBitmap,
+                Bitmap resized = Bitmap.createScaledBitmap(bigBitmap,
                         (int)(bigBitmap.getWidth()*0.6),
                         (int)(bigBitmap.getHeight()*0.6),
                         true);
@@ -127,12 +132,6 @@ public class Apod extends Fragment {
                 e.printStackTrace();
                 return null;
             }
-        }
-        protected void onPostExecute(Bitmap result)
-        {
-            apodImageView.setImageBitmap(this.resized);
-            this.apodlable.bringToFront();
-
         }
 
     }
@@ -150,7 +149,8 @@ public class Apod extends Fragment {
                 this.jsonInfo = Jsoup.connect(JSONObjectURL).ignoreContentType(true).execute().body();
             } catch (IOException e) {
                 e.printStackTrace();
-
+                Toast toast = Toast.makeText(getContext(), "check your internet connectionmeme", Toast.LENGTH_SHORT);
+                toast.show();
             }
             try {
                 this.jsonObject = new JSONObject(jsonInfo);
@@ -167,6 +167,9 @@ public class Apod extends Fragment {
             {
                 e.printStackTrace();
             }
+
+
+
             Log.v("URL Check", this.url);
             return this.url;
         }
